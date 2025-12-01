@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Twitter, Github } from "lucide-react";
+import { Mail, Linkedin, Instagram, Github } from "lucide-react";
 
 export const ContactSection = () => {
   const socialLinks = [
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Github, href: "https://github.com", label: "GitHub" },
+    { icon: Mail, href: "mailto:dnofficial200@gmail.com", label: "Email" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/durgesh-narayan-nayak-82098a353/", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/dn.o4_/", label: "Instagram" },
+    { icon: Github, href: "https://github.com/DnN04", label: "GitHub" },
   ];
 
   return (
@@ -19,9 +19,8 @@ export const ContactSection = () => {
           viewport={{ once: true }}
           className="font-serif text-6xl md:text-7xl lg:text-9xl mb-12"
         >
-          Let's Work
-          <br />
-          Together
+          Let's Connect.
+                  
         </motion.h2>
 
         <motion.p
