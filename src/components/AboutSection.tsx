@@ -14,12 +14,19 @@ export const AboutSection = () => {
     <section id="about" ref={ref} className="py-32 px-8 md:px-20 max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-20 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl mb-8">About</h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 0.1, 0.1, 1] }}
+            className="font-serif text-7xl md:text-8xl lg:text-9xl xl:text-[5rem] mb-8 font-extrabold tracking-tight"
+          >
+            About
+          </motion.h2>
           <div className="space-y-6 font-sans text-sm md:text-base text-muted-foreground leading-relaxed">
             <p>
               I'm a product designer and developer with a passion for creating meaningful
