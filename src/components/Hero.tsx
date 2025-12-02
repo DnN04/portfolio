@@ -55,8 +55,8 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
                   <motion.span
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: baseDelay + index * 0.15, ease: "easeOut" }}
-                    className="block font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-light tracking-tight hover:opacity-70 transition-opacity duration-500"
+                    transition={{ duration: 0.6, delay: baseDelay + index * 0.12, ease: "easeOut" }}
+                    className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-light tracking-tight hover:opacity-70 transition-opacity duration-500"
                   >
                     {item.text}
                   </motion.span>
@@ -65,6 +65,18 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
             })}
           </div>
         )}
+      </motion.div>
+
+      {/* Hello element positioned separately so you can adjust placement easily */}
+      <motion.div
+        id="hello"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4 + baseDelay }}
+        className="absolute z-50"
+        style={{ left: '29%', top: '45%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
+      >
+        Hello
       </motion.div>
 
       <motion.div
@@ -76,16 +88,14 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         <h1 className="font-sans text-xs md:text-sm font-medium tracking-wider mb-3">
           DURGESH NARAYAN NAYAK
         </h1>
+
         <p className="font-sans text-xs md:text-sm text-muted-foreground leading-relaxed">
           FRONTEND DEVELOPER - AI DEVELOPER 
           <br />
-          
         </p>
+
         <p className="font-sans text-xs md:text-sm text-muted-foreground leading-relaxed mt-4">
-          B.TECH CSE with AIML - 2nd Year{" "}
-          <a href="#" className="underline hover:opacity-70 transition-opacity">
-            SRM Institute of Science and Technology
-          </a>
+          B.TECH CSE with AIML - 2nd Year
         </p>
       </motion.div>
     </section>

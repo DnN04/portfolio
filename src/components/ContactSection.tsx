@@ -30,7 +30,7 @@ export const ContactSection = () => {
           viewport={{ once: true }}
           className="font-sans text-sm md:text-base text-muted-foreground mb-16 max-w-2xl mx-auto leading-relaxed"
         >
-          I'm always interested in hearing about new projects and opportunities.
+          I'm always interested in working with like minded people and work on new ideas.
           Whether you have a question or just want to say hi, feel free to reach out.
         </motion.p>
 
