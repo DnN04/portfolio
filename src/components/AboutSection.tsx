@@ -29,7 +29,7 @@ export const AboutSection = () => {
           </motion.h2>
           <div className="space-y-6 font-sans text-sm md:text-base text-muted-foreground leading-relaxed">
             <p>
-              I'm a product designer and developer with a passion for creating meaningful
+              I'm a 2nd year CSE undergrad and developer with a passion for creating meaningful
               digital experiences. With over a decade of experience, I've worked with
               startups and established companies to bring their visions to life.
             </p>

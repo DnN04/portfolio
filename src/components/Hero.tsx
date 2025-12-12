@@ -67,7 +67,7 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         )}
       </motion.div>
 
-      {/* Hello element positioned separately so you can adjust placement easily */}
+      {/* Hello element positioned separately so you can adjust placement easily ..*/}
       <motion.div
         id="hello"
         initial={{ opacity: 0 }}
