@@ -65,6 +65,11 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
             })}
           </div>
         )}
+
+        {/* Circular photo section */}
+        <div className="absolute w-[25vw] h-[25vw] bg-foreground rounded-full shadow-2xl overflow-hidden" style={{ left: '50%', top: '45%', transform: 'translateY(-50%)' }}>
+          <img src="/photo.jpg" alt="My Photo" className="w-full h-full object-cover" />
+        </div>
       </motion.div>
 
       {/* Hello element positioned separately so you can adjust placement easily ..*/}
