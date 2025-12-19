@@ -1,8 +1,48 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Github, Linkedin, Mail } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+
+// Static PhotoDisplay: renders photo exactly from public/profilePhotoPos.json (no editing UI)
+function PhotoDisplay() {
+  const [pos, setPos] = useState<{ left: number; top: number; width: number; height: number; locked?: boolean; ovalRatio?: number } | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const resp = await fetch('/profilePhotoPos.json', { cache: 'no-store' });
+        if (!mounted) return;
+        if (resp.ok) {
+          const parsed = await resp.json();
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true, ovalRatio: parsed.ovalRatio });
+          return;
+        }
+      } catch {}
+      // fallback to localStorage if public file not present
+      try {
+        const raw = localStorage.getItem('profilePhotoPos');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true, ovalRatio: parsed.ovalRatio });
+        }
+      } catch {}
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  if (!pos) return null;
+
+  return (
+    <div
+      style={{ position: 'absolute', left: pos.left, top: pos.top, width: pos.width, height: pos.height, zIndex: 60 }}
+      className="rounded-full overflow-hidden shadow-2xl border border-background pointer-events-none flex items-center justify-center"
+    >
+      <img src="/photo.png" alt="My photo" style={{ width: 'auto', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+    </div>
+  );
+}
 
 export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; introDelay?: number } = {}) => {
   const [scrollY, setScrollY] = useState(0);
@@ -36,8 +76,30 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
     { text: "CONTACT", to: "/contact" },
   ];
 
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const helloRef = useRef<HTMLDivElement | null>(null);
+  const [photoTopPx, setPhotoTopPx] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    function updatePhotoPos() {
+      if (!helloRef.current || !sectionRef.current) return;
+      const helloRect = helloRef.current.getBoundingClientRect();
+      const sectionRect = sectionRef.current.getBoundingClientRect();
+      const center = helloRect.top - sectionRect.top + helloRect.height / 2;
+      setPhotoTopPx(Math.round(center));
+    }
+
+    updatePhotoPos();
+    window.addEventListener("resize", updatePhotoPos);
+    window.addEventListener("scroll", updatePhotoPos, { passive: true });
+    return () => {
+      window.removeEventListener("resize", updatePhotoPos);
+      window.removeEventListener("scroll", updatePhotoPos);
+    };
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section ref={sectionRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -88,6 +150,7 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
       {/* Hello element positioned separately so you can adjust placement easily ..*/}
       <motion.div
         id="hello"
+        ref={helloRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 + baseDelay }}
@@ -95,6 +158,19 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         style={{ left: '29%', top: '45%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
       >
         Hello
+      </motion.div>
+
+      {/* Interactive PhotoEditor: draggable & resizable */}
+      <motion.div
+        initial={{ opacity: 0, x: 10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 + baseDelay }}
+        className="absolute z-50 pointer-events-none"
+        style={{ left: 0, top: 0 }}
+      >
+        <div className="pointer-events-auto">
+          <PhotoDisplay />
+        </div>
       </motion.div>
 
       <motion.div
