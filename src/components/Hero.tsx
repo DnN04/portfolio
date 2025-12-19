@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 
 // Static PhotoDisplay: renders photo exactly from public/profilePhotoPos.json (no editing UI)
 function PhotoDisplay() {
-  const [pos, setPos] = useState<{ left: number; top: number; width: number; height: number; locked?: boolean; ovalRatio?: number } | null>(null);
+  const [pos, setPos] = useState<{ left: number; top: number; width: number; height: number; locked?: boolean } | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -16,16 +16,15 @@ function PhotoDisplay() {
         if (!mounted) return;
         if (resp.ok) {
           const parsed = await resp.json();
-          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true, ovalRatio: parsed.ovalRatio });
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true });
           return;
         }
       } catch {}
-      // fallback to localStorage if public file not present
       try {
         const raw = localStorage.getItem('profilePhotoPos');
         if (raw) {
           const parsed = JSON.parse(raw);
-          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true, ovalRatio: parsed.ovalRatio });
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true });
         }
       } catch {}
     })();
@@ -155,9 +154,9 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 + baseDelay }}
         className="absolute z-50"
-        style={{ left: '29%', top: '45%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
+        style={{ left: '19%', top: '25%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
       >
-        Hello
+        Hello...
       </motion.div>
 
       {/* Interactive PhotoEditor: draggable & resizable */}

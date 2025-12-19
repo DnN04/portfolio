@@ -1,0 +1,2 @@
+- [x] Update the "Hello..." motion.div in Hero.tsx to include "I am DURGESH NARAYAN NAYAK" and the role/education details below it, removing the vertical centering transform.
+- [ ] Remove the separate motion.div that currently holds the name and details at the bottom left of the screen.

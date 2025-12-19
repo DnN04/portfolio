@@ -14,7 +14,7 @@ const Index = () => {
       {/* Top-left horizontal text nav for landing page only */}
       <div>
         {/* site logo (top-left) - moved down ~34px (top-[34px]) and shrink container height to 25px */}
-        <a href="/" className="fixed top-[29.5px] left-4 z-50 w-auto h-[25px] opacity-90 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center" aria-label="Home">
+        <a href="/" className="fixed top-[28.5px] left-4 z-50 w-auto h-[25px] opacity-90 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center" aria-label="Home">
           <img src="/logo.png" alt="Durgesh logo" className="h-full w-auto object-contain" />
         </a>
 
