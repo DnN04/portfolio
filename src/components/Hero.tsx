@@ -134,6 +134,32 @@ useEffect(() => {
       {/* Subtle background gradient for visual grounding */}
 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
 
+<div
+  className="absolute bottom-0 left-0 right-0 h-[45%] pointer-events-none"
+  style={{
+    background:
+      "radial-gradient(ellipse at bottom, rgba(255,255,255,0.06), transparent 60%)"
+  }}
+/>
+
+
+{/* Subtle grain texture */}
+<div
+  className="absolute inset-0 pointer-events-none z-10 opacity-[0.06]"
+  style={{
+    backgroundImage: `
+      repeating-radial-gradient(circle at 50% 50%,
+        rgba(0,0,0,0.25) 0px,
+        rgba(0,0,0,0.25) 1px,
+        transparent 1px,
+        transparent 3px
+      )
+    `
+  }}
+/>
+
+
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
