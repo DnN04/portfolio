@@ -48,6 +48,36 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
   // no delay for text animations—they start immediately as curtain exits
   const baseDelay = 0;
 
+
+  // Typing effect (SAFE)
+const roles = ["Student", "Full Stack Developer", "AIML Practitioner"];
+const [roleIndex, setRoleIndex] = useState(0);
+const [typedText, setTypedText] = useState("");
+const [isDeleting, setIsDeleting] = useState(false);
+
+useEffect(() => {
+  const current = roles[roleIndex];
+  const speed = isDeleting ? 40 : 70;
+
+  const timer = setTimeout(() => {
+    if (!isDeleting) {
+      setTypedText(current.substring(0, typedText.length + 1));
+      if (typedText === current) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      }
+    } else {
+      setTypedText(current.substring(0, typedText.length - 1));
+      if (typedText === "") {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      }
+    }
+  }, speed);
+
+  return () => clearTimeout(timer);
+}, [typedText, isDeleting, roleIndex]);
+
+
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const socialLinks = [
     { icon: Instagram, url: "https://instagram.com/yourusername", name: "Instagram" },
@@ -98,7 +128,12 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
   }, []);
 
   return (
-    <section ref={sectionRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section 
+      
+    ref={sectionRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Subtle background gradient for visual grounding */}
+<div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -154,10 +189,71 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 + baseDelay }}
         className="absolute z-50"
-        style={{ left: '19%', top: '25%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
+        style={{ left: '19%', top: '32%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
       >
         Hello...
       </motion.div>
+
+      <div
+  className="absolute left-[19%] top-[25%] w-24 h-px bg-border opacity-40"
+  style={{ marginTop: '60px' }}
+/>
+
+
+      {/* About text below Hello (SAFE, no overlap) */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.55 + baseDelay }}
+        className="absolute z-40 text-left pointer-events-none"
+        style={{
+          left: '19%',
+          top: '25%',
+          marginTop: '120px', // pushes below Hello safely
+        }}
+      >
+        {/* <h1 className="font-sans text-xl md:text-2xl font-medium">
+          I am <span className="font-semibold">Durgesh</span>
+        </h1>
+
+        <p className="mt-1 font-sans text-sm md:text-base text-muted-foreground">
+          <span className="text-foreground">{typedText}</span>
+          <span className="ml-1 animate-pulse">|</span>
+        </p> */}
+
+          {/* <h1 className="font-sans text-xl md:text-2xl font-medium">
+            I am <span className="font-semibold">Durgesh</span>
+          </h1>
+
+          <p className="mt-1 font-sans text-sm md:text-base text-muted-foreground leading-relaxed">
+          <span className="text-foreground">{typedText}</span>
+          <span className="ml-1 animate-pulse">|</span>
+  </p>
+
+  <p className="mt-3 max-w-xs font-sans text-xs md:text-sm text-muted-foreground leading-relaxed">
+    I build clean, interactive web experiences and explore the intersection of
+    frontend engineering and artificial intelligence.
+  </p> */}
+
+  <h1 className="font-sans text-2xl md:text-3xl font-semibold tracking-tight">
+  I am <span className="text-foreground">Durgesh</span>
+</h1>
+
+<p className="mt-2 font-sans text-base md:text-lg leading-snug">
+  <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+    {typedText}
+  </span>
+  <span className="ml-1 animate-pulse text-muted-foreground">|</span>
+</p>
+
+<p className="mt-4 max-w-sm font-sans text-sm md:text-base text-muted-foreground leading-relaxed">
+  I design and build clean, interactive web experiences while exploring the
+  intersection of frontend engineering and artificial intelligence.
+</p>
+
+
+      </motion.div>
+
 
       {/* Interactive PhotoEditor: draggable & resizable */}
       <motion.div
@@ -172,7 +268,7 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         </div>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 + baseDelay }}
@@ -190,11 +286,21 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
         <p className="font-sans text-xs md:text-sm text-muted-foreground leading-tight mt-1">
           B.TECH CSE with AIML - 2nd Year
         </p>
-      </motion.div>
+      </motion.div> */}
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="absolute bottom-8 right-4 opacity-50 hover:opacity-100 transition-opacity duration-300 p-2 bg-background/50 rounded-full">
+          {/* <button className="absolute bottom-8 right-4 opacity-50 hover:opacity-100 transition-opacity duration-300 p-2 bg-background/50 rounded-full"> */}
+          {/* <button
+              className="absolute z-40 opacity-60 hover:opacity-100 transition-opacity duration-300 p-2 bg-background/50 rounded-full"
+              style={{
+                left: '19%',
+                top: '25%',
+                marginTop: '150px', // sits below typing text
+              }
+          }
+>
+
             <motion.div
               key={currentIconIndex}
               initial={{ x: 20, opacity: 0 }}
@@ -204,7 +310,34 @@ export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; i
             >
               {React.createElement(socialLinks[currentIconIndex].icon, { size: 24 })}
             </motion.div>
+          </button> */}
+          <button
+            className="group absolute z-40 flex items-center gap-3 overflow-hidden
+                      bg-background/60 backdrop-blur border border-border
+                      rounded-full px-3 py-2 transition-all duration-300
+                      w-10 hover:w-40"
+            style={{
+              left: '19%',
+              top: '25%',
+              marginTop: '295px',
+            }}
+          >
+            <motion.div
+              key={currentIconIndex}
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center justify-center"
+            >
+              {React.createElement(socialLinks[currentIconIndex].icon, { size: 18 })}
+            </motion.div>
+
+            <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {socialLinks.map((social, i) => (
+                <social.icon key={i} size={16} />
+              ))}
+            </div>
           </button>
+
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-background border border-border rounded-md p-2">
           {socialLinks.map((social, index) => (
