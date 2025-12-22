@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { Instagram, Github, Linkedin, Mail } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+// import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 
 // Static PhotoDisplay: renders photo exactly from public/profilePhotoPos.json (no editing UI)
+
+
 function PhotoDisplay() {
   const [pos, setPos] = useState<{ left: number; top: number; width: number; height: number; locked?: boolean } | null>(null);
 
@@ -44,6 +46,9 @@ function PhotoDisplay() {
 }
 
 export const Hero = ({ hideNavText, introDelay = 0 }: { hideNavText?: boolean; introDelay?: number } = {}) => {
+  // const [currentIconIndex, setCurrentIconIndex] = useState(0);
+  // const [isHovered, setIsHovered] = useState(false);
+
   const [scrollY, setScrollY] = useState(0);
   // no delay for text animations—they start immediately as curtain exits
   const baseDelay = 0;
@@ -78,13 +83,43 @@ useEffect(() => {
 }, [typedText, isDeleting, roleIndex]);
 
 
-  const [currentIconIndex, setCurrentIconIndex] = useState(0);
-  const socialLinks = [
-    { icon: Instagram, url: "https://instagram.com/yourusername", name: "Instagram" },
-    { icon: Github, url: "https://github.com/yourusername", name: "GitHub" },
-    { icon: Linkedin, url: "https://linkedin.com/in/yourusername", name: "LinkedIn" },
-    { icon: Mail, url: "mailto:your@email.com", name: "Mail" },
-  ];
+//   // const [currentIconIndex, setCurrentIconIndex] = useState(0);
+//   const socialLinks = [
+//     { icon: Instagram, url: "https://instagram.com/yourusername", name: "Instagram" },
+//     { icon: Github, url: "https://github.com/yourusername", name: "GitHub" },
+//     { icon: Linkedin, url: "https://linkedin.com/in/yourusername", name: "LinkedIn" },
+//     { icon: Mail, url: "mailto:your@email.com", name: "Mail" },
+//   ];
+
+// useEffect(() => {
+//   if (isHovered) return;
+
+//   const interval = setInterval(() => {
+//     setCurrentIconIndex((prev) => (prev + 1) % socialLinks.length);
+//   }, 1800);
+
+//   return () => clearInterval(interval);
+// }, [isHovered]);
+
+const [currentIconIndex, setCurrentIconIndex] = useState(0);
+const [isHovered, setIsHovered] = useState(false);
+
+const socialLinks = [
+  { icon: Instagram, url: "https://instagram.com/yourusername", name: "Instagram" },
+  { icon: Github, url: "https://github.com/yourusername", name: "GitHub" },
+  { icon: Linkedin, url: "https://linkedin.com/in/yourusername", name: "LinkedIn" },
+  { icon: Mail, url: "mailto:your@email.com", name: "Mail" },
+];
+
+useEffect(() => {
+  if (isHovered) return;
+
+  const interval = setInterval(() => {
+    setCurrentIconIndex((prev) => (prev + 1) % socialLinks.length);
+  }, 1600);
+
+  return () => clearInterval(interval);
+}, [isHovered, socialLinks.length]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -92,12 +127,12 @@ useEffect(() => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIconIndex((prev) => (prev + 1) % socialLinks.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [socialLinks.length]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIconIndex((prev) => (prev + 1) % socialLinks.length);
+  //   }, 2000);
+  //   return () => clearInterval(interval);
+  // }, [socialLinks.length]);
 
   const navItems = [
     { text: "WORK", to: "/work" },
@@ -170,7 +205,9 @@ useEffect(() => {
         }}
       >
         {!hideNavText && (
-          <div className="space-y-4 md:space-y-8">
+          // <div className="space-y-4 md:space-y-8">
+          <div className="space-y-6 md:space-y-12 lg:space-y-16">
+
             {navItems.map((item, index) => {
               const isHash = item.to && item.to.startsWith("#");
 
@@ -314,66 +351,71 @@ useEffect(() => {
         </p>
       </motion.div> */}
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          {/* <button className="absolute bottom-8 right-4 opacity-50 hover:opacity-100 transition-opacity duration-300 p-2 bg-background/50 rounded-full"> */}
-          {/* <button
-              className="absolute z-40 opacity-60 hover:opacity-100 transition-opacity duration-300 p-2 bg-background/50 rounded-full"
-              style={{
-                left: '19%',
-                top: '25%',
-                marginTop: '150px', // sits below typing text
-              }
-          }
+  
+
+<div
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+  className="absolute z-40 flex items-center overflow-hidden
+             bg-background/60 backdrop-blur border border-border
+             rounded-full px-3 py-2
+             transition-all duration-300
+             w-10 hover:w-48"
+  style={{
+    left: "19%",
+    top: "25%",
+    marginTop: "295px",
+  }}
 >
+  {/* Left: rotating icon OR @ */}
+  <div className="flex items-center justify-center shrink-0 w-4">
+    {!isHovered ? (
+      <motion.div
+        key={currentIconIndex}
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+      >
+        {React.createElement(
+          socialLinks[currentIconIndex].icon,
+          { size: 16 }
+        )}
+      </motion.div>
+    ) : (
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-sm font-medium"
+      >
+        @
+      </motion.span>
+    )}
+  </div>
 
-            <motion.div
-              key={currentIconIndex}
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -20, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {React.createElement(socialLinks[currentIconIndex].icon, { size: 24 })}
-            </motion.div>
-          </button> */}
-          <button
-            className="group absolute z-40 flex items-center gap-3 overflow-hidden
-                      bg-background/60 backdrop-blur border border-border
-                      rounded-full px-3 py-2 transition-all duration-300
-                      w-10 hover:w-40"
-            style={{
-              left: '19%',
-              top: '25%',
-              marginTop: '295px',
-            }}
-          >
-            <motion.div
-              key={currentIconIndex}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center justify-center"
-            >
-              {React.createElement(socialLinks[currentIconIndex].icon, { size: 18 })}
-            </motion.div>
+  {/* Right: icons appear on hover */}
+  <div
+    className="flex items-center gap-4 ml-4
+               opacity-0 pointer-events-none
+               group-hover:opacity-100
+               transition-opacity duration-300"
+    style={{ opacity: isHovered ? 1 : 0, pointerEvents: isHovered ? "auto" : "none" }}
+  >
+    {socialLinks.map((social, i) => (
+      <a
+        key={i}
+        href={social.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-muted-foreground hover:text-foreground transition-colors"
+        aria-label={social.name}
+      >
+        <social.icon size={16} />
+      </a>
+    ))}
+  </div>
+</div>
 
-            <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {socialLinks.map((social, i) => (
-                <social.icon key={i} size={16} />
-              ))}
-            </div>
-          </button>
 
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-background border border-border rounded-md p-2">
-          {socialLinks.map((social, index) => (
-            <DropdownMenuItem key={index} onClick={() => window.open(social.url, '_blank')} className="flex items-center gap-2 p-2 hover:bg-accent cursor-pointer">
-              {React.createElement(social.icon, { size: 16 })}
-              <span>{social.name}</span>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
     </section>
   );
 };
