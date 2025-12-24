@@ -78,6 +78,8 @@ const Index = () => {
             // delay clearing a tiny bit so the blur transition looks smooth
             setTimeout(() => setShowIntro(false), 60);
           }}
+          // onFinish={() => setShowIntro(false)}
+
         />
       )}
     </div>

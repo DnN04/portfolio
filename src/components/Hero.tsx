@@ -195,6 +195,8 @@ useEffect(() => {
 
 
 
+
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -252,7 +254,17 @@ useEffect(() => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 + baseDelay }}
         className="absolute z-50"
-        style={{ left: '19%', top: '32%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
+        // style={{ left: '19%', top: '32%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
+        style={{
+  left: '19%',
+  top: '32%',
+  transform: 'translateY(-50%)',
+  fontFamily: "'Playlist Script Custom', cursive",
+  fontSize: '96px',
+  letterSpacing: '0.5px',
+  lineHeight: 1,
+}}
+
       >
         Hello...
       </motion.div>
@@ -298,21 +310,33 @@ useEffect(() => {
     frontend engineering and artificial intelligence.
   </p> */}
 
-  <h1 className="font-sans text-2xl md:text-3xl font-semibold tracking-tight">
-  I am <span className="text-foreground">Durgesh</span>
+  {/* <h1 className="font-sans text-2xl md:text-3xl font-semibold tracking-tight"> */}
+  <h1 className="font-sans text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
+
+  {/* I am <span className="text-foreground">Durgesh</span> */}
+  I’m <span className="text-foreground">Durgesh</span>
+
 </h1>
 
-<p className="mt-2 font-sans text-base md:text-lg leading-snug">
+{/* <p className="mt-2 font-sans text-base md:text-lg leading-snug"> */}
+<p className="mt-3 font-sans text-lg md:text-xl leading-snug">
+
   <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
     {typedText}
   </span>
   <span className="ml-1 animate-pulse text-muted-foreground">|</span>
 </p>
 
-<p className="mt-4 max-w-sm font-sans text-sm md:text-base text-muted-foreground leading-relaxed">
+{/* <p className="mt-4 max-w-sm font-sans text-sm md:text-base text-muted-foreground leading-relaxed"> */}
+<p className="mt-6 max-w-md font-sans text-base md:text-lg text-muted-foreground leading-relaxed">
+
   I design and build clean, interactive web experiences while exploring the
   intersection of frontend engineering and artificial intelligence.
 </p>
+<p className="mt-3 font-sans text-sm text-muted-foreground italic">
+  Turning coffee into code.
+</p>
+
 
 
       </motion.div>
@@ -359,12 +383,12 @@ useEffect(() => {
   className="absolute z-40 flex items-center overflow-hidden
              bg-background/60 backdrop-blur border border-border
              rounded-full px-3 py-2
-             transition-all duration-300
-             w-10 hover:w-48"
+             transition-all duration-300"
   style={{
     left: "19%",
     top: "25%",
-    marginTop: "295px",
+    marginTop: "350px",
+    width: isHovered ? "170px" : "40px",
   }}
 >
   {/* Left: rotating icon OR @ */}
@@ -392,13 +416,13 @@ useEffect(() => {
     )}
   </div>
 
-  {/* Right: icons appear on hover */}
+  {/* Right: icons appear ONLY on hover */}
   <div
-    className="flex items-center gap-4 ml-4
-               opacity-0 pointer-events-none
-               group-hover:opacity-100
-               transition-opacity duration-300"
-    style={{ opacity: isHovered ? 1 : 0, pointerEvents: isHovered ? "auto" : "none" }}
+    className="flex items-center gap-4 ml-4 transition-opacity duration-300"
+    style={{
+      opacity: isHovered ? 1 : 0,
+      pointerEvents: isHovered ? "auto" : "none",
+    }}
   >
     {socialLinks.map((social, i) => (
       <a
@@ -414,6 +438,7 @@ useEffect(() => {
     ))}
   </div>
 </div>
+
 
 
     </section>
