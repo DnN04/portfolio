@@ -18,7 +18,7 @@ function PhotoDisplay() {
         if (!mounted) return;
         if (resp.ok) {
           const parsed = await resp.json();
-          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true });
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: false });
           return;
         }
       } catch {}
@@ -26,7 +26,7 @@ function PhotoDisplay() {
         const raw = localStorage.getItem('profilePhotoPos');
         if (raw) {
           const parsed = JSON.parse(raw);
-          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: parsed.locked ?? true });
+          setPos({ left: parsed.left ?? 0, top: parsed.top ?? 0, width: parsed.width ?? 224, height: parsed.height ?? 190, locked: false });
         }
       } catch {}
     })();
@@ -37,7 +37,7 @@ function PhotoDisplay() {
 
   return (
     <div
-      style={{ position: 'absolute', left: pos.left, top: pos.top, width: pos.width, height: pos.height, zIndex: 60 }}
+      style={{ position: 'absolute', left: pos.left , top: pos.top, width: pos.width, height: pos.height, zIndex: 60 }}
       className="rounded-full overflow-hidden shadow-2xl border border-background pointer-events-none flex items-center justify-center"
     >
       <img src="/photo.png" alt="My photo" style={{ width: 'auto', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
@@ -59,6 +59,8 @@ const roles = ["Student", "Full Stack Developer", "AIML Practitioner"];
 const [roleIndex, setRoleIndex] = useState(0);
 const [typedText, setTypedText] = useState("");
 const [isDeleting, setIsDeleting] = useState(false);
+const [showOverlay, setShowOverlay] = useState(false);
+
 
 useEffect(() => {
   const current = roles[roleIndex];
@@ -165,7 +167,24 @@ useEffect(() => {
   return (
     <section 
       
-    ref={sectionRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    // ref={sectionRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    // <section
+  ref={sectionRef}
+  className="min-h-screen flex items-center justify-center relative overflow-hidden pointer-events-none z-0"
+>
+     {/* Reference Overlay (DEV ONLY) */}
+{showOverlay && (
+  <div className="absolute inset-0 z-[999] pointer-events-none">
+    <img
+      src="/reference.png"
+      alt="Reference overlay"
+      className="w-full h-full object-cover opacity-30"
+    />
+  </div>
+)}
+
+     
+     
       {/* Subtle background gradient for visual grounding */}
 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background pointer-events-none" />
 
@@ -201,7 +220,7 @@ useEffect(() => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: baseDelay }}
-        className="text-center"
+        className="absolute left-[5%] top-[20%]"
         style={{
           transform: `translateY(${scrollY * 0.3}px)`,
         }}
@@ -256,11 +275,11 @@ useEffect(() => {
         className="absolute z-50"
         // style={{ left: '19%', top: '32%', transform: 'translateY(-50%)', fontFamily: "'Playlist Script Custom', cursive", fontSize: '84px', lineHeight: 1 }}
         style={{
-  left: '19%',
-  top: '32%',
+  left: '15%',
+  top: '28%',
   transform: 'translateY(-50%)',
   fontFamily: "'Playlist Script Custom', cursive",
-  fontSize: '96px',
+  fontSize: '140px',
   letterSpacing: '0.5px',
   lineHeight: 1,
 }}
@@ -270,7 +289,7 @@ useEffect(() => {
       </motion.div>
 
       <div
-  className="absolute left-[19%] top-[25%] w-24 h-px bg-border opacity-40"
+  className="absolute left-[15%] top-[25%] w-24 h-px bg-border opacity-40"
   style={{ marginTop: '60px' }}
 />
 
@@ -282,8 +301,8 @@ useEffect(() => {
         transition={{ duration: 0.6, delay: 0.55 + baseDelay }}
         className="absolute z-40 text-left pointer-events-none"
         style={{
-          left: '19%',
-          top: '25%',
+          left: '15%',
+          top: '24%',
           marginTop: '120px', // pushes below Hello safely
         }}
       >
@@ -311,7 +330,8 @@ useEffect(() => {
   </p> */}
 
   {/* <h1 className="font-sans text-2xl md:text-3xl font-semibold tracking-tight"> */}
-  <h1 className="font-sans text-3xl md:text-4xl font-semibold tracking-tight leading-tight">
+  {/* <h1 className="font-sans text-3xl md:text-4xl font-semibold tracking-tight leading-tight"> */}
+  <h1 className="font-sans text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight">
 
   {/* I am <span className="text-foreground">Durgesh</span> */}
   I’m <span className="text-foreground">Durgesh</span>
@@ -319,7 +339,7 @@ useEffect(() => {
 </h1>
 
 {/* <p className="mt-2 font-sans text-base md:text-lg leading-snug"> */}
-<p className="mt-3 font-sans text-lg md:text-xl leading-snug">
+<p className="mt-3 font-sans text-xl md:text-xl leading-snug">
 
   <span className="bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
     {typedText}
@@ -328,12 +348,12 @@ useEffect(() => {
 </p>
 
 {/* <p className="mt-4 max-w-sm font-sans text-sm md:text-base text-muted-foreground leading-relaxed"> */}
-<p className="mt-6 max-w-md font-sans text-base md:text-lg text-muted-foreground leading-relaxed">
+<p className="mt-4 max-w-xl font-sans text-lg md:text-xl text-muted-foreground leading-relaxed">
 
   I design and build clean, interactive web experiences while exploring the
   intersection of frontend engineering and artificial intelligence.
 </p>
-<p className="mt-3 font-sans text-sm text-muted-foreground italic">
+<p className="mt-3 font-sans text-l text-muted-foreground italic">
   Turning coffee into code.
 </p>
 
@@ -348,13 +368,14 @@ useEffect(() => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.6 + baseDelay }}
         className="absolute z-50 pointer-events-none"
-        style={{ left: 0, top: 0 }}
+        style={{ left: 65, top: 0 }}
       >
         <div className="pointer-events-auto">
           <PhotoDisplay />
         </div>
       </motion.div>
 
+      
       {/* <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -380,13 +401,13 @@ useEffect(() => {
 <div
   onMouseEnter={() => setIsHovered(true)}
   onMouseLeave={() => setIsHovered(false)}
-  className="absolute z-40 flex items-center overflow-hidden
+  className="absolute z-40 pointer-events-auto flex items-center overflow-hidden
              bg-background/60 backdrop-blur border border-border
              rounded-full px-3 py-2
              transition-all duration-300"
   style={{
-    left: "19%",
-    top: "25%",
+    left: "15%",
+    top: "26%",
     marginTop: "350px",
     width: isHovered ? "170px" : "40px",
   }}
@@ -439,6 +460,23 @@ useEffect(() => {
   </div>
 </div>
 
+{/* <button
+  onClick={() => setShowOverlay((p) => !p)}
+  className="fixed bottom-4 right-4 z-[1000]
+             bg-background border border-border
+             px-3 py-1 rounded text-xs"
+>
+  Overlay {showOverlay ? "ON" : "OFF"}
+</button> */}
+
+{/* <div
+  className="absolute inset-0 z-[998] pointer-events-none opacity-20"
+  style={{
+    backgroundImage:
+      "linear-gradient(to right, rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.2) 1px, transparent 1px)",
+    backgroundSize: "40px 40px"
+  }}
+/> */}
 
 
     </section>

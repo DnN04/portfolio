@@ -105,3 +105,66 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Add to index.css */
+.logo-container {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure nothing blocks the logo */
+.fixed {
+  z-index: auto;
+}
+
+/* Remove any backdrop-filter that might block logo */
+.backdrop-blur-sm,
+.backdrop-blur-md,
+.backdrop-blur-lg {
+  z-index: 1; /* Lower than logo */
+}
+
+/* Add to index.css */
+.nav-link {
+  padding: 12px 0 !important;
+  display: block !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure links are clickable */
+a {
+  pointer-events: auto !important;
+}
+
+/* Fix for rotated text click area */
+.-rotate-90,
+[style*="rotate(-90deg)"] {
+  padding: 1rem 0 !important;
+  margin: 1rem 0 !important;
+  min-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure nav is clickable and visible */
+.fixed.left-4.top-\[80px\] {
+  z-index: 9998 !important;
+  pointer-events: auto !important;
+}
+
+/* Make sure Hero content doesn't block */
+section.min-h-screen {
+  pointer-events: none !important;
+}
+
+/* But allow specific elements in Hero to be clickable */
+.pointer-events-auto {
+  pointer-events: auto !important;
+}
+
+/* Nav links should be clickable */
+a, [role="button"] {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}

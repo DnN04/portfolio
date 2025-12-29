@@ -11,7 +11,7 @@ export const IntroCurtain: React.FC<Props> = ({ onFinish, duration = 0.9 }) => {
 
   return (
     <motion.div
-      className="fixed left-0 right-0 z-[100] pointer-events-auto"
+      className="fixed left-0 right-0 z-[50] pointer-events-none"
       style={{
         background: "hsl(var(--foreground))",
         height: "100vh",

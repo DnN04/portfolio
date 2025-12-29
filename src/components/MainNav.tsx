@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Home, Briefcase, User, Mail } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Sidebar = () => {
+export const MainNav = () => {
   const navigate = useNavigate();
   const navItems = [
     { icon: Home, to: "/", label: "Home" },
@@ -13,12 +13,10 @@ export const Sidebar = () => {
 
   return (
     <motion.aside
-      id="main-sidebar"
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed left-0 top-0 h-screen w-16 md:w-20 flex flex-col items-center py-8"
-      style={{ zIndex: 2147483647, pointerEvents: 'auto' }}
+      className="absolute left-[12%] top-[20%] flex flex-col items-center z-70"
     >
       {/* Logo */}
       <div className="mb-8">
@@ -62,16 +60,6 @@ export const Sidebar = () => {
           </div>
         ))}
       </nav>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-auto text-foreground text-xs"
-        style={{ writingMode: "vertical-rl" }}
-      >
-        © 2025
-      </motion.div>
     </motion.aside>
   );
 };
