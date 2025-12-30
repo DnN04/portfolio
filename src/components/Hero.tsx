@@ -467,7 +467,6 @@ useEffect(() => {
     )}
   </div>
 
-  
 
   {/* Right: icons appear ONLY on hover */}
   <div
