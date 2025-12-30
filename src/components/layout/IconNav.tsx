@@ -25,9 +25,11 @@ export const IconNav = ({ activePage }: IconNavProps) => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}
     //   className="h-screen flex flex-col items-center py-8 bg-background/10 backdrop-blur-sm border-r border-border/20"
-    className="h-screen flex flex-col items-center  py-8"
+    className="h-screen flex flex-col items-center"
     >
-      <nav className="flex flex-col gap-8 flex-grow justify-center">
+      {/* <nav className="flex flex-col gap-8 flex-grow justify-center"> */}
+      <nav className="flex flex-col gap-8 justify-center h-full">
+
         {navItems.map((item) => {
           const isActive = location.pathname === item.to;
           
@@ -80,16 +82,28 @@ export const IconNav = ({ activePage }: IconNavProps) => {
           );
         })}
       </nav>
+      {/* CV DOWNLOAD */}
+<motion.a
+  href="/Durgesh_CV.pdf"
+  download
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.8 }}
+  className="mt-8 mb-6 text-xs tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300"
+>
+  CV
+</motion.a>
+
 
       {/* Optional footer */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
         className="mt-auto text-foreground/40 text-xs -rotate-90 origin-center whitespace-nowrap"
       >
         © 2025
-      </motion.div>
+      </motion.div> */}
     </motion.aside>
   );
 };

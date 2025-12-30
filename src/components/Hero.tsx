@@ -107,10 +107,10 @@ const [currentIconIndex, setCurrentIconIndex] = useState(0);
 const [isHovered, setIsHovered] = useState(false);
 
 const socialLinks = [
-  { icon: Instagram, url: "https://instagram.com/yourusername", name: "Instagram" },
-  { icon: Github, url: "https://github.com/yourusername", name: "GitHub" },
-  { icon: Linkedin, url: "https://linkedin.com/in/yourusername", name: "LinkedIn" },
-  { icon: Mail, url: "mailto:your@email.com", name: "Mail" },
+    { icon: Mail, href: "mailto:dnofficial200@gmail.com", name: "Email" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/durgesh-narayan-nayak-82098a353/", name: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/dn.o4_/", name: "Instagram" },
+    { icon: Github, href: "https://github.com/DnN04", name: "GitHub" },
 ];
 
 useEffect(() => {
@@ -211,8 +211,6 @@ useEffect(() => {
     `
   }}
 />
-
-
 
 
 
@@ -357,6 +355,38 @@ useEffect(() => {
   Turning coffee into code.
 </p>
 
+{/* Resume CTA */}
+<motion.div
+  initial={{ opacity: 0, y: 8 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4, delay: 0.9 }}
+  className="mt-3 flex items-center gap-2 pointer-events-auto"
+>
+  <a
+    href="/resume.pdf"
+    // target="_blank"
+    // rel="noopener noreferrer"
+    download
+    className="px-4 py-2 rounded-full
+               border border-foreground/30
+               font-sans text-sm
+               hover:bg-foreground hover:text-background
+               transition-colors"
+  >
+    Download Resume
+  </a>
+
+  {/* <a
+    href="/resume.pdf"
+    download
+    className="text-sm font-sans text-muted-foreground
+               hover:text-foreground transition-colors"
+  >
+    
+  </a> */}
+</motion.div>
+
+
 
 
       </motion.div>
@@ -368,7 +398,7 @@ useEffect(() => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.6 + baseDelay }}
         className="absolute z-50 pointer-events-none"
-        style={{ left: 65, top: 0 }}
+        style={{ left: 60, top: 0 }}
       >
         <div className="pointer-events-auto">
           <PhotoDisplay />
@@ -406,8 +436,8 @@ useEffect(() => {
              rounded-full px-3 py-2
              transition-all duration-300"
   style={{
-    left: "15%",
-    top: "26%",
+    left: "26%",
+    top: "25%",
     marginTop: "350px",
     width: isHovered ? "170px" : "40px",
   }}
@@ -448,7 +478,7 @@ useEffect(() => {
     {socialLinks.map((social, i) => (
       <a
         key={i}
-        href={social.url}
+        href={social.href}
         target="_blank"
         rel="noopener noreferrer"
         className="text-muted-foreground hover:text-foreground transition-colors"

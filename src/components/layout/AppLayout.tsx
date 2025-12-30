@@ -85,7 +85,9 @@ export const AppLayout = ({
 
     return (
       <div 
-          className="fixed left-4 top-[80px] pointer-events-auto"
+          // className="fixed left-4 top-[80px] pointer-events-auto"
+          className="fixed left-4 top-1/2 -translate-y-1/2 pointer-events-auto"
+
         style={{ zIndex: 2147483647, pointerEvents: "auto" }} // Same: below logo
       >
         <div className="flex flex-col items-center gap-6">
@@ -136,6 +138,21 @@ export const AppLayout = ({
               </div>
             );
           })}
+          <div>
+            <motion.a
+  href="/Durgesh_CV.pdf"
+  download
+
+  className="text-[13px] tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300 mt-2"
+  style={{
+    writingMode: "horizontal-tb",
+    textOrientation: "mixed",
+  }}
+>
+  CV
+</motion.a>
+
+          </div>
                     {/* Vertical line from logo to first item */}
           <div className="h-8 w-px bg-foreground/20 mb-2"></div>
         </div>
