@@ -363,7 +363,7 @@ useEffect(() => {
   className="mt-3 flex items-center gap-2 pointer-events-auto"
 >
   <a
-    href="/resume.pdf"
+    href="/RESUME.pdf"
     // target="_blank"
     // rel="noopener noreferrer"
     download
