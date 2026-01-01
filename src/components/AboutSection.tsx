@@ -175,17 +175,14 @@ export const AboutSection = () => {
   const skills = [
     "Java",
     "Python",
+    "C",
     "Machine Learning",
     "Deep Learning",
     "NLP",
     "React",
     "TypeScript",
-    "Tailwind CSS",
-    "Framer Motion",
-    "Streamlit",
-    "Git & GitHub",
-    "APIs",
-  ];
+    "mySQL",
+      ];
 
   const education = [
     {

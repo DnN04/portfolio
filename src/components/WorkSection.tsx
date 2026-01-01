@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import { Github } from "lucide-react";
 
 // interface WorkItemProps {
 //   title: string;
@@ -141,43 +142,17 @@ const WorkCard = ({
   />
 
   {/* Gradient polish */}
-  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent z-20 pointer-events-none" />
+  {/* <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent z-20 pointer-events-none" />
 
-  {/* HOVER OVERLAY — FIXED */}
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: isHovered ? 1 : 0 }}
     transition={{ duration: 0.3 }}
     className="absolute inset-0 z-30 bg-background/70 flex flex-col items-center justify-center gap-4"
   >
-    <span className="font-sans text-sm tracking-wide">
-      Case Study →
-    </span>
-
-    <div className="flex items-center gap-6 mt-6">
-      {github && (
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-sans underline underline-offset-4 hover:opacity-60 transition"
-        >
-          GitHub →
-        </a>
-      )}
-
-      {live && (
-        <a
-          href={live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-sans underline underline-offset-4 hover:opacity-60 transition"
-        >
-          Live →
-        </a>
-      )}
-    </div>
+ 
   </motion.div>
+</div> */}
 </div>
 
 
@@ -200,6 +175,32 @@ const WorkCard = ({
           <p className="font-sans text-sm md:text-base text-foreground/80 leading-relaxed max-w-md">
             {description}
           </p>
+
+          <div className="mt-6 flex items-center gap-6">
+  {github && (
+    <a
+      href={github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition"
+    >
+      <Github size={18} />
+      <span>GitHub</span>
+    </a>
+  )}
+
+  {live && (
+    <a
+      href={live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm text-foreground/80 hover:text-foreground transition underline underline-offset-4"
+    >
+      Live →
+    </a>
+  )}
+</div>
+
         </div>
       </motion.div>
     </motion.div>
@@ -246,7 +247,7 @@ const works = [
     services: "AI Engineering · NLP · Full Stack",
     description:
       "An end-to-end fake news detection platform combining classical ML pipelines with transformer-based language models to accurately identify misinformation in real-world content.",
-    image: "public/FAKENEWS.JPG",
+    image: "/FAKENEWS.JPG",
     github: "https://github.com/DnN04/FAKE-NEWS-DETECTOR",
       },
   {
@@ -254,25 +255,25 @@ const works = [
     services: "Web Development · APIs",
     description:
           "A real-time weather forecasting application delivering accurate, location-based updates with a focus on performance and clean UX.",
-    image: "public/dncheckit.png",
+    image: "/dncheckit.png",
     github: "https://github.com/DnN04/dncheckit",
     live: "https://dn-checkit.vercel.app/",
   },
-  {
-    title: "DNCHECKiT Web App",
-    services: "Frontend Development · API Integration",
-    description:
-      "A real-time weather forecasting application delivering accurate, location-based updates with a focus on performance and clean UX.",
-    image: "/projects/weather.png",
-    github: "https://github.com/yourusername/weather-app",
+  // {
+  //   title: "DNCHECKiT Web App",
+  //   services: "Frontend Development · API Integration",
+  //   description:
+  //     "A real-time weather forecasting application delivering accurate, location-based updates with a focus on performance and clean UX.",
+  //   image: "/projects/weather.png",
+  //   github: "https://github.com/yourusername/weather-app",
 
-  },
+  // },
   {
     title: "AmritKrishi",
     services: "Product Design · AgriTech Concept · Full Stack Development",
     description:
       "A concept-driven platform aimed at empowering Indian farmers with crop insights and decision support through technology.",
-    image: "/projects/amritkrishi.png",
+    image: "/amrit1.png",
     github: "https://github.com/DnN04/amritkrishi2.0",
 
   },
