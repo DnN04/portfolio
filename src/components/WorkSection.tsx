@@ -136,7 +136,11 @@ const WorkCard = ({
   <motion.img
     src={image}
     alt={title}
-    className="relative z-10 w-full h-full object-contain will-change-transform"
+    // className="relative z-10 w-full h-full object-contain will-change-transform"
+    className="relative z-10 w-full h-full 
+           max-h-[280px] sm:max-h-[360px] md:max-h-none 
+           object-contain"
+
     // animate={{ scale: isHovered ? 1.02 : 1 }}
     transition={{ duration: 0.4, ease: "easeOut" }}
   />
@@ -164,15 +168,20 @@ const WorkCard = ({
   }`}
 >
 
-          <motion.h3 className="font-serif text-4xl md:text-5xl mb-4">
+          {/* <motion.h3 className="font-serif text-4xl md:text-5xl mb-4"> */}
+            <motion.h3 className="font-serif 
+  text-3xl sm:text-4xl md:text-5xl mb-4">
+
             {title}
           </motion.h3>
+          
 
           <p className="font-sans text-sm text-muted-foreground mb-6">
             {services}
           </p>
 
-          <p className="font-sans text-sm md:text-base text-foreground/80 leading-relaxed max-w-md">
+          <p className="font-sans text-sm md:text-base text-foreground/80 leading-relaxed max-w-full md:max-w-md
+">
             {description}
           </p>
 
@@ -280,7 +289,14 @@ const works = [
 ];
 
   return (
-    <section id="work" className="py-32 px-8 md:px-20 max-w-7xl mx-auto">
+    // <section id="work" className="py-32 px-8 md:px-20 max-w-7xl mx-auto">
+    <section 
+  id="work" 
+  className="py-24 md:py-32 
+             px-4 sm:px-6 md:px-20 
+             max-w-7xl mx-auto"
+>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

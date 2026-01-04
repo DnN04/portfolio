@@ -154,9 +154,9 @@ a {
 }
 
 /* Make sure Hero content doesn't block */
-section.min-h-screen {
+/* section.min-h-screen {
   pointer-events: none !important;
-}
+} */
 
 /* But allow specific elements in Hero to be clickable */
 .pointer-events-auto {
@@ -167,4 +167,11 @@ section.min-h-screen {
 a, [role="button"] {
   pointer-events: auto !important;
   cursor: pointer !important;
+}
+
+@font-face {
+  font-family: "HelloFont";
+  src: url("/fonts/HelloFont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }

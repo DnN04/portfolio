@@ -168,7 +168,7 @@ export const AppLayout = ({
       {showLogo && (
         <a 
           href="/" 
-          className="fixed top-[28.5px] left-4 h-[25px] opacity-90 hover:opacity-100 transition-opacity duration-200"
+          className="fixed top-[28.5px] left-4 h-[25px] opacity-90 hover:opacity-100 transition-opacity duration-200 hidden md:block"
           style={{ zIndex: 2147483647, pointerEvents: 'auto' }}
         >
           <img src="/logo.png" alt="Logo" className="h-full w-auto" />
@@ -176,12 +176,29 @@ export const AppLayout = ({
       )}
 
       {/* Navigation - NOW BELOW LOGO */}
-      {navType === 'text' ? <TextNavigation /> : <IconNavigation />}
+      {/* {navType === 'text' ? <TextNavigation /> : <IconNavigation />} */}
+      <div className="hidden md:block">
+  {navType === 'text' ? <TextNavigation /> : <IconNavigation />}
+</div>
+
 
       {/* Main Content */}
       <main className="relative">
         {children}
       </main>
+
+      {/* Mobile Bottom Nav */}
+<div className="fixed bottom-0 left-0 right-0 z-50 
+                bg-background/90 backdrop-blur-md 
+                border-t border-border 
+                flex md:hidden justify-around py-3">
+  <Link to="/" className="text-xs">Home</Link>
+  <Link to="/work" className="text-xs">Work</Link>
+  <Link to="/about" className="text-xs">About</Link>
+  <Link to="/contact" className="text-xs">Contact</Link>
+</div>
+
+
     </div>
   );
 };

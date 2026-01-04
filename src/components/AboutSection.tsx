@@ -182,6 +182,9 @@ export const AboutSection = () => {
     "React",
     "TypeScript",
     "mySQL",
+    "Numpy","Pandas",
+    "Scikit-Learn",
+    "TensorFlow",
       ];
 
   const education = [
@@ -350,3 +353,4 @@ export const AboutSection = () => {
     </section>
   );
 };
+
