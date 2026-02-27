@@ -84,7 +84,7 @@ export const IconNav = ({ activePage }: IconNavProps) => {
       </nav>
       {/* CV DOWNLOAD */}
 <motion.a
-  href="/Durgesh_CV.pdf"
+  href="/RESUME.pdf"
   download
   initial={{ opacity: 0, y: 10 }}
   animate={{ opacity: 1, y: 0 }}
