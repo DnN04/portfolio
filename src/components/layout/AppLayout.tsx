@@ -140,7 +140,7 @@ export const AppLayout = ({
           })}
           <div>
             <motion.a
-  href="/Durgesh_CV.pdf"
+  href="/RESUME.pdf"
   download
 
   className="text-[13px] tracking-widest text-foreground/60 hover:text-foreground transition-colors duration-300 mt-2"
