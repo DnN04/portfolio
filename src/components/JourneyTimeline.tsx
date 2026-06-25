@@ -105,9 +105,9 @@ const entries: TimelineEntry[] = [
 
   // Achievements
   {
-    year: "2024",
-    title: "GSSoC Contributor",
-    detail: "Girl Script Summer of Code · Open source contributions merged",
+    year: "2025, 2026",
+    title: "GSSoC '26 Contributor",
+    detail: "Girl Script Summer of Code · Open source contributions merged · Under Top 1000 contributors",
     category: "achievements",
     highlight: true,
   },
