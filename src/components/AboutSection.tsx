@@ -4,7 +4,7 @@ import { JourneyTimeline } from "./JourneyTimeline";
 
 export const AboutSection = () => {
   const aboutTexts = [
-    "I'm a 2nd-year CSE undergrad specializing in AIML, focused on building practical, real-world AI-powered applications.",
+    "I'm a 3rd year CSE undergrad specializing in AIML, focused on building practical, real-world AI-powered applications.",
     "I've built projects like a Fake News Detector using transformer models, DNCheckIt weather app, AmritKrishi, and a productivity-driven Todo app.",
     "My interests lie at the intersection of frontend engineering and artificial intelligence, where performance and usability meet intelligence.",
     "Outside coding, I focus on continuous learning, fitness, and disciplined self-improvement.",
