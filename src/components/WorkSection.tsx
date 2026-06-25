@@ -416,7 +416,7 @@ const works: Omit<WorkItemProps, "index">[] = [
     github: "https://github.com/DnN04/DermaAI",
     live: "https://derma-ai-zeta.vercel.app/welcome",
     metrics: ["ResUNet & EfficientNet", "Dice Score ≥ 0.85", "Inference < 3s (CPU)"],
-    tech: ["PyTorch", "FastAPI", "React", "ONNX Runtime", "Docker"],
+    tech: ["PyTorch", "FastAPI", "React", "ONNX Runtime"],
   },
   {
     title: "Veritas AI",
