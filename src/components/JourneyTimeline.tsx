@@ -118,12 +118,7 @@ const entries: TimelineEntry[] = [
     category: "academics",
     highlight: true,
   },
-  {
-    year: "2025",
-    title: "Placement Season Approaching",
-    detail: "Targeting AI/ML & Full Stack roles · Open to internships",
-    category: "achievements",
-  },
+
 ];
 
 const CATEGORIES: { id: TimelineCategory; label: string; icon: typeof GraduationCap }[] = [
