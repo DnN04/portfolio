@@ -112,7 +112,7 @@ const entries: TimelineEntry[] = [
     highlight: true,
   },
   {
-    year: "2024",
+    year: "2026",
     title: "CGPA 9.31 / 10",
     detail: "Academic report upto 4th semester ",
     category: "academics",
