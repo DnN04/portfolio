@@ -520,7 +520,7 @@ export const WorkSection = () => {
             {[
               // { icon: Star, text: "CGPA 9.5 / 10" },
               { icon: Zap,  text: "3+ Shipped Projects" },
-              { icon: Star, text: "GSSoC Contributor" },
+              { icon: Star, text: "GSSoC '26 Contributor" },
               { icon: Zap,  text: "AIML | Web Dev" },
             ].map(({ icon: Icon, text }, i) => (
               <motion.span
