@@ -413,7 +413,7 @@ const works: Omit<WorkItemProps, "index">[] = [
     description:
       "A deep learning medical web application combining automated skin lesion segmentation (ResUNet) and classification (EfficientNet-B0) to assist in early melanoma detection with fast CPU inference.",
     images: ["/derma1.png", "/derma2.png", "/derma3.png"],
-    github: "https://github.com/DnN04/DermaAI",
+    github: "https://github.com/DnN04/DermaAI-Skin-Lesion-Detection",
     live: "https://derma-ai-zeta.vercel.app/welcome",
     metrics: ["ResUNet & EfficientNet", "Dice Score ≥ 0.85", "Inference < 3s (CPU)"],
     tech: ["PyTorch", "FastAPI", "React", "ONNX Runtime"],
